@@ -15,6 +15,14 @@ func routes(_ app: Application) throws {
         let decryptedString = String(data: data, encoding: .utf8) ?? ""
         print(decryptedString)
         let js = string2Json(text: decryptedString)
+        
+//        let originalString = "Hello, World!"
+        if let data1 = decryptedString.data(using: .utf8) {
+            let base64String = data1.base64EncodedString()
+            print(base64String)
+        }
+        
+        
         let num = predictFor(dic: js)
         return AddUserModel(msg: "success", success: true,num: num)
     }
