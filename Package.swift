@@ -16,6 +16,7 @@ let package = Package(
             dependencies: [
                 .product(name: "Vapor", package: "vapor")
             ],
+            resources: [.copy("ML.swift"), .copy("ML.mlmodelc")],
             swiftSettings: [
                 // Enable better optimizations when building in Release configuration. Despite the use of
                 // the `.unsafeFlags` construct required by SwiftPM, this flag is recommended for Release
