@@ -11,5 +11,5 @@ import Vapor
 struct AddUserModel: Content {
     var msg: String?
     var success: Bool
-    var num: Int64?
+    var num: Int?
 }
