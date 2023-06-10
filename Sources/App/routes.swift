@@ -33,7 +33,7 @@ func routes(_ app: Application) throws {
         }
     }
     
-    app.get("setJsonInfo",":symbol",":interval",":json") { req -> AddUserModel in
+    app.get("setJsonInfo",":symbol",":interval",":json") { req -> AddMLModel in
         mlKey.withLock {
             let symbol = req.parameters.get("symbol") ?? ""
             let interval = req.parameters.get("interval") ?? ""
@@ -45,9 +45,9 @@ func routes(_ app: Application) throws {
 //            if interval == "3m" {
 //                interval = "5m"
 //            }
-            let res = predictForv4(dic: js, interval: interval)
+            let res = predictForv4(dic: js, interval: interval,symbol: symbol)
             MLInfo[name] = res
-            return AddUserModel(msg: "success", success: true,num: 0)
+            return AddMLModel(msg: "success", success: true,result: res)
         }
     }
     
