@@ -33,6 +33,36 @@ func routes(_ app: Application) throws {
         }
     }
     
+    app.get("setJsonInfo",":symbol",":interval",":json") { req -> AddUserModel in
+        mlKey.withLock {
+            let symbol = req.parameters.get("symbol") ?? ""
+            let interval = req.parameters.get("interval") ?? ""
+            let v = req.parameters.get("json") ?? ""
+            let data = Data(base64Encoded: v) ?? Data()
+            let decryptedString = String(data: data, encoding: .utf8) ?? ""
+            let js = string2Json(text: decryptedString)
+            let name = "\(symbol)_\(interval)"
+//            if interval == "3m" {
+//                interval = "5m"
+//            }
+            let res = predictForv4(dic: js, interval: interval)
+            MLInfo[name] = res
+            return AddUserModel(msg: "success", success: true,num: 0)
+        }
+    }
+    
+    
+    app.get("getMLResult",":symbol",":interval") { req -> AddMLModel in
+        mlKey.withLock {
+            let symbol = req.parameters.get("symbol") ?? ""
+            let interval = req.parameters.get("interval") ?? ""
+            let name = "\(symbol)_\(interval)"
+            let res = MLInfo[name]
+            return AddMLModel(msg: "success", success: true,result: res)
+        }
+    }
+    
+    
 }
 
 

@@ -13,3 +13,9 @@ struct AddUserModel: Content {
     var success: Bool
     var num: Int?
 }
+
+struct AddMLModel: Content {
+    var msg: String?
+    var success: Bool
+    var result: String?
+}

@@ -87,6 +87,28 @@ func json2String(json: [String: Any]) ->String {
     return ""
 }
 
+func predictForv4(dic: [String: Any],interval: String) ->String {
+    var file = #file.components(separatedBy: "App").first ?? ""
+    file += "/Resources/ML\(interval)v4.mlmodel"
+    let modelUrl = URL(fileURLWithPath: file)
+    let compiledUrl = try? MLModel.compileModel(at: modelUrl)
+    let model = try? MLModel(contentsOf: compiledUrl!)
+//    debugPrint(model)
+    let pro = try? MLDictionaryFeatureProvider(dictionary: dic)
+    if let res = try? model?.prediction(from: pro!) {
+        if let num = res.featureValue(for: "result") {
+            //        debugPrint("res=\(res),\(num)")
+            let str = "\(num)".components(separatedBy: ": ").last ?? ""
+            //        let number = str.getDigial()
+            debugPrint("num=\(str)-\(interval)")
+            return str
+        }
+    }else{
+        debugPrint("模型加载失败")
+    }
+    return ""
+}
+
 extension String {
     func extractNumbersFromString() -> String {
         let regex = try! NSRegularExpression(pattern: "\\d+")
