@@ -45,6 +45,9 @@ func routes(_ app: Application) throws {
 //            if interval == "3m" {
 //                interval = "5m"
 //            }
+//            if interval.contains("99") {
+//                debugPrint("99=\(js)")
+//            }
             let res = predictForv4(dic: js, interval: interval,symbol: symbol)
             MLInfo[name] = res
             return AddMLModel(msg: "success", success: true,result: res)

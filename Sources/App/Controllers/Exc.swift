@@ -89,22 +89,46 @@ func json2String(json: [String: Any]) ->String {
 
 func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
     
-    let open = dic["open"] as? Double ?? 0
-    let high = dic["high"] as? Double ?? 0
-    let low = dic["low"] as? Double ?? 0
-    let volume = dic["volume"] as? Double ?? 0
-    let volatility = dic["volatility"] as? Double ?? 0
-    
-    let dict = [
-        "open": open,
-        "high": high,
-        "low": low,
-        "volume": volume,
-        "volatility": volatility,
-    ]
+    var dict: [String: Any] = [:]
+    if interval.contains("3m"){
+        let open = dic["open"] as? Double ?? 0
+        let high = dic["high"] as? Double ?? 0
+        let low = dic["low"] as? Double ?? 0
+        let volume = dic["volume"] as? Double ?? 0
+        let volatility = dic["volatility"] as? Double ?? 0
+        
+        dict = [
+            "open": open,
+            "high": high,
+            "low": low,
+            "volume": volume,
+            "volatility": volatility,
+        ]
+        
+    }else{
+        
+        let open = Double("\(dic["open"] ?? "")") ?? 0
+        let high = Double("\(dic["high"] ?? "")") ?? 0
+        let low = Double("\(dic["low"] ?? "")") ?? 0
+        let volume = Double("\(dic["volume"] ?? "")") ?? 0
+        let volatility = Double("\(dic["volatility"] ?? "")") ?? 0
+        
+         dict = [
+            "open": open,
+            "high": high,
+            "low": low,
+            "volume": volume,
+            "volatility": volatility,
+        ]
+    }
     
     var file = #file.components(separatedBy: "App").first ?? ""
-    file += "/Resources/ML\(interval)v4.mlmodel"
+    if interval.contains("99") {
+        file += "/Resources/ML3mv499.mlmodel"
+//        debugPrint("99=\(dic),d=\(dic)")
+    }else{
+        file += "/Resources/ML\(interval)v4.mlmodel"
+    }
 //    file += "/Resources/ML3mv4.mlmodel"
     let modelUrl = URL(fileURLWithPath: file)
     let compiledUrl = try? MLModel.compileModel(at: modelUrl)
