@@ -8,6 +8,18 @@
 import Vapor
 import CoreML
 
+extension Double {
+    func str2XF(num: Int) ->String{
+        return String(format: "%.\(num)f", self)
+    }
+    func str2F() ->String{
+        if fabs(self) < 0.01 {
+            return String(format: "%.6f", self)
+        }
+        return String(format: "%.2f", self)
+    }
+}
+
 extension CoreViewController {
     
     func string2T(day: String) ->TimeInterval {
@@ -87,59 +99,48 @@ func json2String(json: [String: Any]) ->String {
     return ""
 }
 
+func handleData(data: Any?) ->Double {
+    
+    if let da = data as? String {
+        return Double(da) ?? 0
+    }else if let da = data as? Double {
+        return da
+    }
+    
+    return 0
+}
+
 func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
     
     var dict: [String: Any] = [:]
-    if interval.contains("3m"){
-        let open = dic["open"] as? Double ?? 0
-        let high = dic["high"] as? Double ?? 0
-        let low = dic["low"] as? Double ?? 0
-        let volume = dic["volume"] as? Double ?? 0
-        let volatility = dic["volatility"] as? Double ?? 0
-        
-        dict = [
-            "open": open,
-            "high": high,
-            "low": low,
-            "volume": volume,
-            "volatility": volatility,
-        ]
-        
-    }else{
-        
-        let open = Double("\(dic["open"] ?? "")") ?? 0
-        let high = Double("\(dic["high"] ?? "")") ?? 0
-        let low = Double("\(dic["low"] ?? "")") ?? 0
-        let volume = Double("\(dic["volume"] ?? "")") ?? 0
-        let volatility = Double("\(dic["volatility"] ?? "")") ?? 0
-        
-         dict = [
-            "open": open,
-            "high": high,
-            "low": low,
-            "volume": volume,
-            "volatility": volatility,
-        ]
-    }
+    let open = handleData(data: dic["open"])
+    let high = handleData(data: dic["high"])
+    let low = handleData(data: dic["low"])
+    let volume = handleData(data: dic["volume"])
+    let volatility = handleData(data: dic["volatility"])
+    
+    dict = [
+        "open": open,
+        "high": high,
+        "low": low,
+        "volume": volume,
+        "volatility": volatility,
+    ]
     
     var file = #file.components(separatedBy: "App").first ?? ""
-    if interval.contains("99") {
-        file += "/Resources/ML3mv499.mlmodel"
-//        debugPrint("99=\(dic),d=\(dic)")
-    }else{
-        file += "/Resources/ML\(interval)v4.mlmodel"
-    }
-//    file += "/Resources/ML3mv4.mlmodel"
+//    if interval.contains("99") {
+        file += "/Resources/ML3mv5.mlmodel"
+//        debugPrint("99=\(dic),d=\(dict)")
+//    }else{
+//        file += "/Resources/ML\(interval)v4.mlmodel"
+//    }
     let modelUrl = URL(fileURLWithPath: file)
     let compiledUrl = try? MLModel.compileModel(at: modelUrl)
     let model = try? MLModel(contentsOf: compiledUrl!)
-//    debugPrint(model)
     let pro = try? MLDictionaryFeatureProvider(dictionary: dict)
     if let res = try? model?.prediction(from: pro!) {
         if let num = res.featureValue(for: "result") {
-            //        debugPrint("res=\(res),\(num)")
             let str = (num).stringValue
-            //        let number = str.getDigial()
             debugPrint("num=\(str)-\(symbol)-\(interval)")
             return str
         }

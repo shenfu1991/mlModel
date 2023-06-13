@@ -6,7 +6,7 @@ let dir = NSHomeDirectory().split(separator: "/")[1]
 public func configure(_ app: Application) async throws {
     readFile()
     kApp = app
-    app.http.server.configuration.port = 1991
+    app.http.server.configuration.port = 1999
     try routes(app)
 
 }
