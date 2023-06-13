@@ -110,6 +110,12 @@ func handleData(data: Any?) ->Double {
     return 0
 }
 
+func getTime() ->String {
+    let format = DateFormatter()
+    format.dateFormat = "HH:mm:ss"
+    return format.string(from: Date())
+}
+
 func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
     
     var dict: [String: Any] = [:]
@@ -129,7 +135,7 @@ func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
     
     var file = #file.components(separatedBy: "App").first ?? ""
 //    if interval.contains("99") {
-        file += "/Resources/ML3mv6.mlmodel"
+        file += "/Resources/ML3mv7.mlmodel"
 //        debugPrint("99=\(dic),d=\(dict)")
 //    }else{
 //        file += "/Resources/ML\(interval)v4.mlmodel"
@@ -141,7 +147,7 @@ func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
     if let res = try? model?.prediction(from: pro!) {
         if let num = res.featureValue(for: "result") {
             let str = (num).stringValue
-            debugPrint("num=\(str)-\(symbol)-\(interval)")
+            debugPrint("num=\(str)-\(symbol)-\(interval) \(getTime())")
             return str
         }
     }else{
