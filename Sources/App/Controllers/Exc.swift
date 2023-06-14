@@ -135,7 +135,7 @@ func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
     
     var file = #file.components(separatedBy: "App").first ?? ""
     if interval.contains("99") {
-        file += "/Resources/ML3mv8.mlmodel"
+        file += "/Resources/ML3m99.mlmodel"
 //        debugPrint("99=\(dic),d=\(dict)")
     }else{
         file += "/Resources/ML\(interval)v4.mlmodel"
