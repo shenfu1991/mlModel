@@ -65,6 +65,42 @@ func routes(_ app: Application) throws {
         }
     }
     
+    app.get("setCSV",":symbol",":interval",":csvString",":earn") { req -> AddMLModel in
+        csvKey.withLock {
+            let symbol = req.parameters.get("symbol") ?? ""
+            let interval = req.parameters.get("interval") ?? ""
+            let csvStr = req.parameters.get("csvString") ?? ""
+            let earn = req.parameters.get("earn") ?? ""
+            csvString += csvStr
+            write2Desktop(text: csvString)
+            return AddMLModel(msg: "success", success: true,result: "res")
+        }
+    }
+    
+    func fileNameT() ->String {
+        let format = DateFormatter()
+        format.dateFormat = "MM-dd^HH:mm"
+        return format.string(from: Date())
+    }
+    
+    func write2Desktop(text: String) {
+        var fileURL = URL(string: "")
+        let name =  "csv_" + fileNameT()
+        if #available(macOS 13.0, *) {
+            fileURL = URL(filePath:"/Users/\(dir)/Desktop/csv_data/\(name).csv")
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        do {
+            try text.write(to: fileURL!, atomically: true, encoding: .utf8)
+        } catch {
+            print("Unable to write file")
+        }
+                
+    }
+
+    
     
 }
 
