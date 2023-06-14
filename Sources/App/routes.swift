@@ -65,14 +65,30 @@ func routes(_ app: Application) throws {
         }
     }
     
-    app.get("setCSV",":symbol",":interval",":csvString",":earn") { req -> AddMLModel in
+    app.get("sendCSV",":symbol",":interval",":csvString",":earn") { req -> AddMLModel in
         csvKey.withLock {
             let symbol = req.parameters.get("symbol") ?? ""
             let interval = req.parameters.get("interval") ?? ""
             let csvStr = req.parameters.get("csvString") ?? ""
             let earn = req.parameters.get("earn") ?? ""
             csvString += csvStr
+            debugPrint("e=\(earn),csv=\(csvString)")
             write2Desktop(text: csvString)
+            
+            if interval == "3m" {
+                csvString3m += csvStr
+                write2DesktopMins(text: csvString3m, interval: "3m")
+            }else if interval == "5m" {
+                csvString5m += csvStr
+                write2DesktopMins(text: csvString5m, interval: "5m")
+            }else if interval == "15m" {
+                csvString15m += csvStr
+                write2DesktopMins(text: csvString15m, interval: "15m")
+            }else if interval == "30m" {
+                csvString30m += csvStr
+                write2DesktopMins(text: csvString30m, interval: "30m")
+            }
+            
             return AddMLModel(msg: "success", success: true,result: "res")
         }
     }
@@ -88,6 +104,23 @@ func routes(_ app: Application) throws {
         let name =  "csv_" + fileNameT()
         if #available(macOS 13.0, *) {
             fileURL = URL(filePath:"/Users/\(dir)/Desktop/csv_data/\(name).csv")
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        do {
+            try text.write(to: fileURL!, atomically: true, encoding: .utf8)
+        } catch {
+            print("Unable to write file")
+        }
+                
+    }
+    
+    func write2DesktopMins(text: String,interval:String) {
+        var fileURL = URL(string: "")
+        let name =  "csv_" + fileNameT()
+        if #available(macOS 13.0, *) {
+            fileURL = URL(filePath:"/Users/\(dir)/Desktop/csv_data/\(interval)/\(name).csv")
         } else {
             // Fallback on earlier versions
         }
