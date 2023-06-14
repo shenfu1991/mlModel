@@ -116,6 +116,21 @@ func getTime() ->String {
     return format.string(from: Date())
 }
 
+func modelRes(md: MLModel,dict: [String: Any],symbol:String,interval: String) ->String{
+    let pro = try? MLDictionaryFeatureProvider(dictionary: dict)
+    if let res = try? md.prediction(from: pro!) {
+        if let num = res.featureValue(for: "result") {
+            let str = (num).stringValue
+            debugPrint("num=\(str)-\(symbol)-\(interval) \(getTime())")
+            return str
+        }
+    }else{
+        debugPrint("模型加载失败: \(dict)")
+       
+    }
+    return ""
+}
+
 func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
     
     var dict: [String: Any] = [:]
@@ -133,27 +148,45 @@ func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
         "volatility": volatility,
     ]
     
-    var file = #file.components(separatedBy: "App").first ?? ""
-    if interval.contains("99") {
-        file += "/Resources/ML3m99.mlmodel"
-//        debugPrint("99=\(dic),d=\(dict)")
-    }else{
-        file += "/Resources/ML\(interval)v4.mlmodel"
-//                debugPrint("9=\(dic),d=\(dict)")
+    if interval == "3m" {
+       return modelRes(md: md3m, dict: dict, symbol: symbol, interval: interval)
+    }else if interval == "5m" {
+        return modelRes(md: md5m, dict: dict, symbol: symbol, interval: interval)
+
+    }else if interval == "15m" {
+        return modelRes(md: md15m, dict: dict, symbol: symbol, interval: interval)
+
+    }else if interval == "30m" {
+        return modelRes(md: md30m, dict: dict, symbol: symbol, interval: interval)
+
+    }else {
+        return modelRes(md: md3m99, dict: dict, symbol: symbol, interval: interval)
     }
-    let modelUrl = URL(fileURLWithPath: file)
-    let compiledUrl = try? MLModel.compileModel(at: modelUrl)
-    let model = try? MLModel(contentsOf: compiledUrl!)
-    let pro = try? MLDictionaryFeatureProvider(dictionary: dict)
-    if let res = try? model?.prediction(from: pro!) {
-        if let num = res.featureValue(for: "result") {
-            let str = (num).stringValue
-            debugPrint("num=\(str)-\(symbol)-\(interval) \(getTime())")
-            return str
-        }
-    }else{
-        debugPrint("模型加载失败: \(dic)")
-    }
+    
+//    var file = #file.components(separatedBy: "App").first ?? ""
+//    if interval.contains("99") {
+//        file += "/Resources/ML3m101.mlmodel"
+////        debugPrint("99=\(dic),d=\(dict)")
+//    }else{
+//        file += "/Resources/ML\(interval)v4.mlmodel"
+////                debugPrint("9=\(dic),d=\(dict)")
+//    }
+//    let modelUrl = URL(fileURLWithPath: file)
+//    if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
+//        let model = try? MLModel(contentsOf: compiledUrl)
+//        let pro = try? MLDictionaryFeatureProvider(dictionary: dict)
+//        if let res = try? model?.prediction(from: pro!) {
+//            if let num = res.featureValue(for: "result") {
+//                let str = (num).stringValue
+//                debugPrint("num=\(str)-\(symbol)-\(interval) \(getTime())")
+//                return str
+//            }
+//        }else{
+//            debugPrint("模型加载失败: \(dic)")
+//        }
+//    }else{
+//        debugPrint("模型加载失败2: \(dic)")
+//    }
     return ""
 }
 

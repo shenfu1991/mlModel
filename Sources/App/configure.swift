@@ -7,6 +7,8 @@ public func configure(_ app: Application) async throws {
     readFile()
     kApp = app
     app.http.server.configuration.port = 1999
+    let vc = CoreViewController()
+    vc.configModels()
     try routes(app)
 
 }
