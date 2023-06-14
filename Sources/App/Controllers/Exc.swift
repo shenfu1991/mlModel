@@ -139,6 +139,7 @@ func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
 //        debugPrint("99=\(dic),d=\(dict)")
     }else{
         file += "/Resources/ML\(interval)v4.mlmodel"
+//                debugPrint("9=\(dic),d=\(dict)")
     }
     let modelUrl = URL(fileURLWithPath: file)
     let compiledUrl = try? MLModel.compileModel(at: modelUrl)
