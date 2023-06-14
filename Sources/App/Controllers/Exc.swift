@@ -132,21 +132,40 @@ func modelRes(md: MLModel,dict: [String: Any],symbol:String,interval: String) ->
 }
 
 func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
-    
     var dict: [String: Any] = [:]
-    let open = handleData(data: dic["open"])
-    let high = handleData(data: dic["high"])
-    let low = handleData(data: dic["low"])
-    let volume = handleData(data: dic["volume"])
-    let volatility = handleData(data: dic["volatility"])
+
+    if !interval.contains("99") {
+        let open = dic["open"] as? Double ?? 0
+        let high = dic["high"] as? Double ?? 0
+        let low = dic["low"] as? Double ?? 0
+        let volume = dic["volume"] as? Double ?? 0
+        let volatility = dic["volatility"] as? Double ?? 0
+        
+        dict = [
+            "open": open,
+            "high": high,
+            "low": low,
+            "volume": volume,
+            "volatility": volatility,
+        ]
+
+    }else{
+        let open = handleData(data: dic["open"])
+        let high = handleData(data: dic["high"])
+        let low = handleData(data: dic["low"])
+        let volume = handleData(data: dic["volume"])
+        let volatility = handleData(data: dic["volatility"])
+        
+        dict = [
+            "open": open,
+            "high": high,
+            "low": low,
+            "volume": volume,
+            "volatility": volatility,
+        ]
+    }
     
-    dict = [
-        "open": open,
-        "high": high,
-        "low": low,
-        "volume": volume,
-        "volatility": volatility,
-    ]
+   
     
     if interval == "3m" {
        return modelRes(md: md3m, dict: dict, symbol: symbol, interval: interval)
@@ -162,32 +181,7 @@ func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
     }else {
         return modelRes(md: md3m99, dict: dict, symbol: symbol, interval: interval)
     }
-    
-//    var file = #file.components(separatedBy: "App").first ?? ""
-//    if interval.contains("99") {
-//        file += "/Resources/ML3m101.mlmodel"
-////        debugPrint("99=\(dic),d=\(dict)")
-//    }else{
-//        file += "/Resources/ML\(interval)v4.mlmodel"
-////                debugPrint("9=\(dic),d=\(dict)")
-//    }
-//    let modelUrl = URL(fileURLWithPath: file)
-//    if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
-//        let model = try? MLModel(contentsOf: compiledUrl)
-//        let pro = try? MLDictionaryFeatureProvider(dictionary: dict)
-//        if let res = try? model?.prediction(from: pro!) {
-//            if let num = res.featureValue(for: "result") {
-//                let str = (num).stringValue
-//                debugPrint("num=\(str)-\(symbol)-\(interval) \(getTime())")
-//                return str
-//            }
-//        }else{
-//            debugPrint("模型加载失败: \(dic)")
-//        }
-//    }else{
-//        debugPrint("模型加载失败2: \(dic)")
-//    }
-    return ""
+
 }
 
 extension String {
