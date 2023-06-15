@@ -33,57 +33,14 @@ extension Double {
 
 
 extension CoreViewController {
-    
     func string2T(day: String) ->TimeInterval {
         let format = DateFormatter()
         format.dateFormat = "yyyy-MM-dd HH:mm"
         format.timeZone = TimeZone.init(identifier: TimeZone.current.identifier)
         return format.date(from: day)?.timeIntervalSince1970 ?? 0
     }
-    
 }
 
-
-
-func predictFor(dic: [String: Any]) ->Int {
-    
-    var file = #file.components(separatedBy: "App").first ?? ""
-    file += "/Resources/ML.mlmodel"
-    let modelUrl = URL(fileURLWithPath: file)
-    let compiledUrl = try? MLModel.compileModel(at: modelUrl)
-    let model = try? MLModel(contentsOf: compiledUrl!)
-//    debugPrint(model)
-    let pro = try? MLDictionaryFeatureProvider(dictionary: dic)
-    let res = try? model?.prediction(from: pro!)
-    if let num = res?.featureValue(for: "result") {
-//        debugPrint("res=\(res),\(num)")
-        let str = "\(num)"
-        let number = str.getDigial()
-        debugPrint("num=\(number)")
-        return number
-    }
-    return -1
-}
-
-func predictFor3(dic: [String: Any]) ->Int {
-    
-    var file = #file.components(separatedBy: "App").first ?? ""
-    file += "/Resources/ML3.mlmodel"
-    let modelUrl = URL(fileURLWithPath: file)
-    let compiledUrl = try? MLModel.compileModel(at: modelUrl)
-    let model = try? MLModel(contentsOf: compiledUrl!)
-//    debugPrint(model)
-    let pro = try? MLDictionaryFeatureProvider(dictionary: dic)
-    let res = try? model?.prediction(from: pro!)
-    if let num = res?.featureValue(for: "result") {
-//        debugPrint("res=\(res),\(num)")
-        let str = "\(num)"
-        let number = str.getDigial()
-        debugPrint("num=\(number)")
-        return number
-    }
-    return -1
-}
 
 func string2Json(text: String) -> [String:Any] {
     let data = Data(text.utf8)

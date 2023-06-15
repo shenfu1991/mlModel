@@ -36,7 +36,7 @@ class CoreViewController {
 
     func config3m() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/ML3mSharp.mlmodel"
+        file += "/Resources/ML3mSharpV2.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
