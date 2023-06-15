@@ -17,9 +17,9 @@ let csvKey = kApp.locks.lock(for: CSVKey.self)
 
 var MLInfo: [String: String] = [:]
 
-var csvString = "open,high,low,volume,volatility,result\n"
+var csvString = "open,high,low,rate,volume,volatility,sharp,signal,result\n"
 
-var csvString3m = "open,high,low,volume,volatility,result\n"
-var csvString5m = "open,high,low,volume,volatility,result\n"
-var csvString15m = "open,high,low,volume,volatility,result\n"
-var csvString30m = "open,high,low,volume,volatility,result\n"
+var csvString3m = "open,high,low,rate,volume,volatility,sharp,signal,result\n"
+var csvString5m = "open,high,low,rate,volume,volatility,sharp,signal,result\n"
+var csvString15m = "open,high,low,rate,volume,volatility,sharp,signal,result\n"
+var csvString30m = "open,high,low,rate,volume,volatility,sharp,signal,result\n"

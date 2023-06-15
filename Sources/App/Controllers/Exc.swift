@@ -9,16 +9,28 @@ import Vapor
 import CoreML
 
 extension Double {
-    func str2XF(num: Int) ->String{
-        return String(format: "%.\(num)f", self)
+    
+    func fmt(x: Int = 6) ->Double {
+        let valueStr = self.strXF(x: x)
+        return Double(valueStr) ?? 0
     }
+    
     func str2F() ->String{
-        if fabs(self) < 0.01 {
+        return String(format: "%.2f", self)
+    }
+    
+    func strXF(x: Int) ->String{
+        return String(format: "%.\(x)f", self)
+    }
+    
+    func strBTF() ->String{
+        if self < 1 {
             return String(format: "%.6f", self)
         }
         return String(format: "%.2f", self)
     }
 }
+
 
 extension CoreViewController {
     
@@ -122,6 +134,9 @@ func modelRes(md: MLModel,dict: [String: Any],symbol:String,interval: String) ->
         if let num = res.featureValue(for: "result") {
             let str = (num).stringValue
             debugPrint("num=\(str)-\(symbol)-\(interval) \(getTime())")
+//            if str == "none" {
+//                debugPrint("none=\(dict)")
+//            }
             return str
         }
     }else{
@@ -133,38 +148,26 @@ func modelRes(md: MLModel,dict: [String: Any],symbol:String,interval: String) ->
 
 func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
     var dict: [String: Any] = [:]
-
-    if !interval.contains("99") {
-        let open = dic["open"] as? Double ?? 0
-        let high = dic["high"] as? Double ?? 0
-        let low = dic["low"] as? Double ?? 0
-        let volume = dic["volume"] as? Double ?? 0
-        let volatility = dic["volatility"] as? Double ?? 0
-        
-        dict = [
-            "open": open,
-            "high": high,
-            "low": low,
-            "volume": volume,
-            "volatility": volatility,
-        ]
-
-    }else{
-        let open = handleData(data: dic["open"])
-        let high = handleData(data: dic["high"])
-        let low = handleData(data: dic["low"])
-        let volume = handleData(data: dic["volume"])
-        let volatility = handleData(data: dic["volatility"])
-        
-        dict = [
-            "open": open,
-            "high": high,
-            "low": low,
-            "volume": volume,
-            "volatility": volatility,
-        ]
-    }
     
+    let open = handleData(data: dic["open"])
+    let high = handleData(data: dic["high"])
+    let low = handleData(data: dic["low"])
+    let volume = handleData(data: dic["volume"])
+    let volatility = handleData(data: dic["volatility"])
+    let rate = handleData(data: dic["rate"])
+    let sharp = handleData(data: dic["sharp"])
+    let signal = handleData(data: dic["signal"])
+    
+    dict = [
+        "open": open.fmt(),
+        "high": high.fmt(),
+        "low": low.fmt(),
+        "rate": rate.fmt(),
+        "volume": volume.fmt(x: 2),
+        "volatility": volatility.fmt(),
+        "sharp": sharp.fmt(),
+        "signal": signal.fmt()
+    ]
    
     
     if interval == "3m" {
