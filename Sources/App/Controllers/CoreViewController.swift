@@ -13,7 +13,7 @@ var md30m: MLModel!
 var md3m99: MLModel!
 
 class CoreViewController {
-    var ennf = ""
+    var ennf = "ML3mSharpV2"
    
     
     func configModels() {
@@ -26,7 +26,7 @@ class CoreViewController {
     
     func config99m() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/ML3mSharp.mlmodel"
+        file += "/Resources/ML3mSharpV3.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
@@ -36,7 +36,7 @@ class CoreViewController {
 
     func config3m() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/ML3mSharpV2.mlmodel"
+        file += "/Resources/\(ennf).mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
@@ -46,7 +46,7 @@ class CoreViewController {
     
     func config5m() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/ML3mSharp.mlmodel"
+        file += "/Resources/\(ennf).mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
@@ -56,7 +56,7 @@ class CoreViewController {
     
     func config15m() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/ML3mSharp.mlmodel"
+        file += "/Resources/\(ennf).mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
@@ -66,7 +66,7 @@ class CoreViewController {
     
     func config30m() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/ML3mSharp.mlmodel"
+        file += "/Resources/\(ennf).mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
