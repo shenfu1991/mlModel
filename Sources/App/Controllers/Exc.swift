@@ -127,19 +127,12 @@ func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
     ]
    
     
-    if interval == "3m" {
-       return modelRes(md: md3m, dict: dict, symbol: symbol, interval: interval)
-    }else if interval == "5m" {
-        return modelRes(md: md5m, dict: dict, symbol: symbol, interval: interval)
-
-    }else if interval == "15m" {
-        return modelRes(md: md15m, dict: dict, symbol: symbol, interval: interval)
-
-    }else if interval == "30m" {
-        return modelRes(md: md30m, dict: dict, symbol: symbol, interval: interval)
-
+    if interval.contains("101") {
+       return modelRes(md: md3m101, dict: dict, symbol: symbol, interval: interval)
+    }else if interval.contains("103") {
+        return modelRes(md: md3m103, dict: dict, symbol: symbol, interval: interval)
     }else {
-        return modelRes(md: md3m99, dict: dict, symbol: symbol, interval: interval)
+        return modelRes(md: md3m, dict: dict, symbol: symbol, interval: interval)
     }
 
 }
