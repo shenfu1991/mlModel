@@ -10,7 +10,7 @@ var md3m: MLModel!
 var md3m101: MLModel!
 var md3m103: MLModel!
 var md3m105: MLModel!
-var md3m107: MLModel!
+var md5m107: MLModel!
 
 class CoreViewController {
     var ennf = "ML3mSharpV2"
@@ -69,7 +69,7 @@ class CoreViewController {
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
-            md3m105 = model
+            md5m107 = model
         }
     }
     
