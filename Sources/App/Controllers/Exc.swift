@@ -126,6 +126,10 @@ func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
         "signal": signal.fmt()
     ]
     
+    if interval.contains("107") {
+        return modelRes(md: md30m107, dict: dict, symbol: symbol, interval: interval)
+    }
+    
     if interval == "3m" {
         return modelRes(md: md3m, dict: dict, symbol: symbol, interval: interval)
     }else if interval == "5m" {
