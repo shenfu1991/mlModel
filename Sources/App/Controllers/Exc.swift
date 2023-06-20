@@ -132,6 +132,11 @@ func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
     }else if interval.contains("103") {
         return modelRes(md: md3m103, dict: dict, symbol: symbol, interval: interval)
     }else if interval.contains("105") {
+        if interval.contains("15m") {
+            return modelRes(md: md3m10515, dict: dict, symbol: symbol, interval: interval)
+        }else if interval.contains("30m") {
+            return modelRes(md: md3m10530, dict: dict, symbol: symbol, interval: interval)
+        }
         return modelRes(md: md3m105, dict: dict, symbol: symbol, interval: interval)
     }else {
         return modelRes(md: md3m, dict: dict, symbol: symbol, interval: interval)

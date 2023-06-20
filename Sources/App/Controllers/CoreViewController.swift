@@ -10,6 +10,8 @@ var md3m: MLModel!
 var md3m101: MLModel!
 var md3m103: MLModel!
 var md3m105: MLModel!
+var md3m10515: MLModel!
+var md3m10530: MLModel!
 
 class CoreViewController {
     var ennf = "ML3mSharpV2"
@@ -19,6 +21,8 @@ class CoreViewController {
         config101()
         config103()
         config105()
+        config10515()
+        config10530()
     }
     
     func config3m() {
@@ -58,6 +62,26 @@ class CoreViewController {
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
             md3m105 = model
+        }
+    }
+    
+    func config10515() {
+        var file = #file.components(separatedBy: "App").first ?? ""
+        file += "/Resources/ML15mSharpV5.mlmodel"
+        let modelUrl = URL(fileURLWithPath: file)
+        if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
+            let model = try? MLModel(contentsOf: compiledUrl)
+            md3m10515 = model
+        }
+    }
+    
+    func config10530() {
+        var file = #file.components(separatedBy: "App").first ?? ""
+        file += "/Resources/ML30mSharpV5.mlmodel"
+        let modelUrl = URL(fileURLWithPath: file)
+        if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
+            let model = try? MLModel(contentsOf: compiledUrl)
+            md3m10530 = model
         }
     }
     
