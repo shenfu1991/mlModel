@@ -125,22 +125,35 @@ func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
         "sharp": sharp.fmt(),
         "signal": signal.fmt()
     ]
+    
+    if interval == "3m" {
+        return modelRes(md: md3m, dict: dict, symbol: symbol, interval: interval)
+    }else if interval == "5m" {
+        return modelRes(md: md5m, dict: dict, symbol: symbol, interval: interval)
+    }else if interval == "15m" {
+        return modelRes(md: md15m, dict: dict, symbol: symbol, interval: interval)
+    }else{
+        return modelRes(md: md30m, dict: dict, symbol: symbol, interval: interval)
+    }
    
     
-    if interval.contains("101") {
-       return modelRes(md: md3m101, dict: dict, symbol: symbol, interval: interval)
-    }else if interval.contains("103") {
-        return modelRes(md: md3m103, dict: dict, symbol: symbol, interval: interval)
-    }else if interval.contains("105") {
-        if interval.contains("15m") {
-            return modelRes(md: md3m10515, dict: dict, symbol: symbol, interval: interval)
-        }else if interval.contains("30m") {
-            return modelRes(md: md3m10530, dict: dict, symbol: symbol, interval: interval)
-        }
-        return modelRes(md: md3m105, dict: dict, symbol: symbol, interval: interval)
-    }else {
-        return modelRes(md: md3m, dict: dict, symbol: symbol, interval: interval)
-    }
+//    if interval.contains("101") {
+//       return modelRes(md: md3m101, dict: dict, symbol: symbol, interval: interval)
+//    }else if interval.contains("103") {
+//        return modelRes(md: md3m103, dict: dict, symbol: symbol, interval: interval)
+//    }else if interval.contains("105") {
+//        if interval.contains("15m") {
+//            return modelRes(md: md3m10515, dict: dict, symbol: symbol, interval: interval)
+//        }else if interval.contains("30m") {
+//            return modelRes(md: md3m10530, dict: dict, symbol: symbol, interval: interval)
+//        }
+//        return modelRes(md: md3m105, dict: dict, symbol: symbol, interval: interval)
+//    }else if interval.contains("107") {
+////        debugPrint("10999")
+//        return modelRes(md: md5m107, dict: dict, symbol: symbol, interval: interval)
+//    }else {
+//        return modelRes(md: md3m, dict: dict, symbol: symbol, interval: interval)
+//    }
 
 }
 

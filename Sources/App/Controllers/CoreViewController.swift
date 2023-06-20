@@ -7,34 +7,73 @@
 import CoreML
 
 var md3m: MLModel!
+var md5m: MLModel!
+var md15m: MLModel!
+var md30m: MLModel!
+
 var md3m101: MLModel!
 var md3m103: MLModel!
 var md3m105: MLModel!
 var md3m10515: MLModel!
 var md3m10530: MLModel!
+var md5m107: MLModel!
 
 class CoreViewController {
     var ennf = "ML3mSharpV2"
     
     func configModels() {
         config3m()
-        config101()
-        config103()
-        config105()
-        config10515()
-        config10530()
+        config5m()
+        config15m()
+        config30m()
+//        config101()
+//        config103()
+//        config105()
+//        config10515()
+//        config10530()
+//        config107()
     }
     
     func config3m() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/ML3mSharpV2.mlmodel"
+        file += "/Resources/ML3mSharpV5.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
             md3m = model
         }
     }
-
+    
+    func config5m() {
+        var file = #file.components(separatedBy: "App").first ?? ""
+        file += "/Resources/ML5mSharpV7.mlmodel"
+        let modelUrl = URL(fileURLWithPath: file)
+        if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
+            let model = try? MLModel(contentsOf: compiledUrl)
+            md5m = model
+        }
+    }
+    
+    func config15m() {
+        var file = #file.components(separatedBy: "App").first ?? ""
+        file += "/Resources/ML15mSharpV5.mlmodel"
+        let modelUrl = URL(fileURLWithPath: file)
+        if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
+            let model = try? MLModel(contentsOf: compiledUrl)
+            md15m = model
+        }
+    }
+    
+    func config30m() {
+        var file = #file.components(separatedBy: "App").first ?? ""
+        file += "/Resources/ML30mSharpV5.mlmodel"
+        let modelUrl = URL(fileURLWithPath: file)
+        if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
+            let model = try? MLModel(contentsOf: compiledUrl)
+            md30m = model
+        }
+    }
+    
     func config101() {
         var file = #file.components(separatedBy: "App").first ?? ""
         file += "/Resources/ML3mSharpV3.mlmodel"
@@ -85,6 +124,15 @@ class CoreViewController {
         }
     }
     
-
+    func config107() {
+        var file = #file.components(separatedBy: "App").first ?? ""
+        file += "/Resources/ML5mSharpV7.mlmodel"
+        let modelUrl = URL(fileURLWithPath: file)
+        if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
+            let model = try? MLModel(contentsOf: compiledUrl)
+            md5m107 = model
+        }
+    }
+    
     
 }
