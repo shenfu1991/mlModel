@@ -21,6 +21,12 @@ var md5m107: MLModel!
 var md30m107: MLModel!
 var md15m105: MLModel!
 
+var balance15m103: MLModel!
+var balance30m101: MLModel!
+var balance3m109: MLModel!
+var balance5m108: MLModel!
+
+
 
 class CoreViewController {
     var ennf = "ML3mSharpV2"
@@ -32,6 +38,10 @@ class CoreViewController {
         config30m()
         config107v8()
         config105v8()
+        b15m103()
+        b30m101()
+        b3m109()
+        b5m108()
 //        config101()
 //        config103()
 //        config105()
@@ -158,6 +168,46 @@ class CoreViewController {
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
             md15m105 = model
+        }
+    }
+    
+    func b15m103() {
+        var file = #file.components(separatedBy: "App").first ?? ""
+        file += "/Resources/n_ML_15m.mlmodel"
+        let modelUrl = URL(fileURLWithPath: file)
+        if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
+            let model = try? MLModel(contentsOf: compiledUrl)
+            balance15m103 = model
+        }
+    }
+    
+    func b30m101() {
+        var file = #file.components(separatedBy: "App").first ?? ""
+        file += "/Resources/ML_30m.mlmodel"
+        let modelUrl = URL(fileURLWithPath: file)
+        if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
+            let model = try? MLModel(contentsOf: compiledUrl)
+            balance30m101 = model
+        }
+    }
+    
+    func b3m109() {
+        var file = #file.components(separatedBy: "App").first ?? ""
+        file += "/Resources/ML_3m.mlmodel"
+        let modelUrl = URL(fileURLWithPath: file)
+        if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
+            let model = try? MLModel(contentsOf: compiledUrl)
+            balance3m109 = model
+        }
+    }
+    
+    func b5m108() {
+        var file = #file.components(separatedBy: "App").first ?? ""
+        file += "/Resources/ML_5m.mlmodel"
+        let modelUrl = URL(fileURLWithPath: file)
+        if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
+            let model = try? MLModel(contentsOf: compiledUrl)
+            balance5m108 = model
         }
     }
     
