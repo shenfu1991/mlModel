@@ -126,18 +126,16 @@ func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
         "signal": signal.fmt()
     ]
     
-    if interval.contains("107") {
-        return modelRes(md: md30m107, dict: dict, symbol: symbol, interval: interval)
-    }else if interval.contains("105") {
-        return modelRes(md: md15m105, dict: dict, symbol: symbol, interval: interval)
-    }else if interval.contains("103") {
-        return modelRes(md: balance15m103, dict: dict, symbol: symbol, interval: interval)
-    }else if interval.contains("101") {
-        return modelRes(md: balance30m101, dict: dict, symbol: symbol, interval: interval)
-    }else if interval.contains("109") {
-        return modelRes(md: balance3m109, dict: dict, symbol: symbol, interval: interval)
-    }else if interval.contains("108") {
-        return modelRes(md: balance5m108, dict: dict, symbol: symbol, interval: interval)
+    if interval.contains("101") {
+        if interval.contains("3m") {
+            return modelRes(md: md3mv2, dict: dict, symbol: symbol, interval: interval)
+        }else if interval.contains("5m") {
+            return modelRes(md: md5mv2, dict: dict, symbol: symbol, interval: interval)
+        }else if interval.contains("15m") {
+            return modelRes(md: md15mv2, dict: dict, symbol: symbol, interval: interval)
+        }else{
+            return modelRes(md: md30mv2, dict: dict, symbol: symbol, interval: interval)
+        }
     }else if interval == "3m" {
         return modelRes(md: md3m, dict: dict, symbol: symbol, interval: interval)
     }else if interval == "5m" {
@@ -179,5 +177,9 @@ extension String {
     
     func getDigial() ->Int {
         return Int(extractNumbersFromString()) ?? -1
+    }
+    
+    func doubleValue() ->Double {
+        return Double(self) ?? 0
     }
 }

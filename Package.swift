@@ -9,12 +9,15 @@ let package = Package(
     dependencies: [
         // 💧 A server-side Swift web framework.
         .package(url: "https://github.com/vapor/vapor.git", from: "4.76.0"),
+        .package(url: "https://github.com/swiftcsv/SwiftCSV", from: "0.6.0"),
     ],
     targets: [
         .executableTarget(
             name: "App",
             dependencies: [
-                .product(name: "Vapor", package: "vapor")
+                .product(name: "Vapor", package: "vapor"),
+                .product(name: "SwiftCSV", package: "SwiftCSV"),
+
             ],
             resources: [.copy("ML.swift"), .copy("ML.mlmodelc")],
             swiftSettings: [

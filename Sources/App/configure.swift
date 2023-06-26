@@ -10,6 +10,7 @@ public func configure(_ app: Application) async throws {
     let vc = CoreViewController()
     vc.configModels()
     try routes(app)
+    
 
 }
 
@@ -18,7 +19,6 @@ func readFile() {
     let data = try? Data(contentsOf: URL(fileURLWithPath: filepath))
     print(data)
 }
-
 
 
 
