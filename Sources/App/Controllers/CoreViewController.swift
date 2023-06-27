@@ -12,10 +12,10 @@ var md5m: MLModel!
 var md15m: MLModel!
 var md30m: MLModel!
 
-var md3mv2: MLModel!
-var md5mv2: MLModel!
-var md15mv2: MLModel!
-var md30mv2: MLModel!
+var md3mV5: MLModel!
+var md5mV5: MLModel!
+var md15mV5: MLModel!
+var md30mV5: MLModel!
 
 
 var csvUrl: URL!
@@ -34,20 +34,20 @@ let itArr = ["3m","5m","15m","30m"]
 
 
 class CoreViewController {
-    var ennf = "ML3mSharpV2"
+    var ennf = "ML3mSharpV5"
     
     func configModels() {
-//        config3m()
-//        config5m()
-//        config15m()
-//        config30m()
-//
-//        config3mv2()
-//        config5mv2()
-//        config15mv2()
-//        config30mv2()
+        config3m()
+        config5m()
+        config15m()
+        config30m()
+
+        config3mV5()
+        config5mV5()
+        config15mV5()
+        config30mV5()
         
-        loopTask()
+//        loopTask()
     }
     
     func loopTask() {
@@ -273,43 +273,43 @@ class CoreViewController {
         }
     }
     
-    func config3mv2() {
+    func config3mV5() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/ML_3mV2.mlmodel"
+        file += "/Resources/3mV5.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
-            md3mv2 = model
+            md3mV5 = model
         }
     }
     
-    func config5mv2() {
+    func config5mV5() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/ML_5mV2.mlmodel"
+        file += "/Resources/5mV5.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
-            md5mv2 = model
+            md5mV5 = model
         }
     }
     
-    func config15mv2() {
+    func config15mV5() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/ML_15mV2.mlmodel"
+        file += "/Resources/15mV5.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
-            md15mv2 = model
+            md15mV5 = model
         }
     }
     
-    func config30mv2() {
+    func config30mV5() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/ML_30mV2.mlmodel"
+        file += "/Resources/30mV5.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
-            md30mv2 = model
+            md30mV5 = model
         }
     }
 
