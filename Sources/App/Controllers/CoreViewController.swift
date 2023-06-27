@@ -39,7 +39,7 @@ class CoreViewController {
         config5m()
         config15m()
         config30m()
-        
+
         config3mv2()
         config5mv2()
         config15mv2()
@@ -107,7 +107,7 @@ class CoreViewController {
 //                debugPrint("t=\(timestamp),open=\(open)")
                 
                 if idx >= limit {
-                    let arr = rows[idx-20...idx]
+                    let arr = rows[idx-(limit-1)...idx]
                     let firstRow = rows[idx-(limit-1)]
                     
 //                    let ftimestamp = firstRow["timestamp"]?.doubleValue()
@@ -172,45 +172,68 @@ class CoreViewController {
     func getTag(current: Double,values: [Double]) ->String {
         
         //long,LN,short,SN,none
-        var currentEarnRate: Double = 0
-        var lc = 0
-        var sc = 0
-        var lnc = 0
-        var snc = 0
-        for v in values {
-            currentEarnRate = (v - current)/current
-            if currentEarnRate >= 0.0125 {
-                lc += 1
-            }else if currentEarnRate > 0 {
-                lnc += 1
-            } else if -currentEarnRate > 0.0125 {
-                sc += 1
-            }else if -currentEarnRate > 0 {
-                snc += 1
-            }else{
-//                nonec += 1
+//        var currentEarnRate: Double = 0
+//        var lc = 0
+//        var sc = 0
+//        var lnc = 0
+//        var snc = 0
+//        for v in values {
+//            currentEarnRate = (v - current)/current
+//            if currentEarnRate >= 0.0125 {
+//                lc += 1
+//            }else if currentEarnRate > 0 {
+//                lnc += 1
+//            } else if -currentEarnRate > 0.0125 {
+//                sc += 1
+//            }else if -currentEarnRate > 0 {
+//                snc += 1
+//            }else{
+////                nonec += 1
+//            }
+//        }
+        
+        let maxT = values.max() ?? 0
+        let minT = values.min() ?? 0
+        
+        let v = 0.0125
+        
+        if fabs(maxT-current) > fabs(minT-current) {
+            if (maxT - current)/current >= v {
+                return "long"
             }
-        }
-        
-        let maxV = [lc,sc,lnc,snc].max() ?? 0
-        
-        if maxV == lc {
-            return "long"
-        }else if maxV == sc {
-            return "short"
-        }else if maxV == lnc {
             return "LN"
-        }else if maxV == snc {
+        }else {
+            if fabs(minT - current)/current >= v {
+                return "short"
+            }
             return "SN"
         }
         
-        return "none"
+        
+        
+//        if (maxT - current)/current >= v {
+//            return "long"
+//        }
+        
+//        let maxV = [lc,sc,lnc,snc].max() ?? 0
+//
+//        if maxV == lc {
+//            return "long"
+//        }else if maxV == sc {
+//            return "short"
+//        }else if maxV == lnc {
+//            return "LN"
+//        }else if maxV == snc {
+//            return "SN"
+//        }
+//
+//        return "none"
     }
 
     
     func config3m() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/ML_3m.mlmodel"
+        file += "/Resources/3m.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
@@ -220,7 +243,7 @@ class CoreViewController {
     
     func config5m() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/ML_5m.mlmodel"
+        file += "/Resources/5m.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
@@ -230,7 +253,7 @@ class CoreViewController {
     
     func config15m() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/ML_15m.mlmodel"
+        file += "/Resources/15m.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
@@ -240,7 +263,7 @@ class CoreViewController {
     
     func config30m() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/ML_30m.mlmodel"
+        file += "/Resources/30m.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
