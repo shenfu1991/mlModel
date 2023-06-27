@@ -26,8 +26,10 @@ var sbName = ""
 var pathIdx = 0
 var sbIdx = 0
 
-let sbArr = ["BTCUSDT","ETHUSDT","TOMOUSDT","ALPHAUSDT","NKNUSDT","RSRUSDT","GRTUSDT"]
-let pathArr = ["3","4","5","6"]
+//let sbArr = ["BTCUSDT","ETHUSDT","TOMOUSDT","ALPHAUSDT","NKNUSDT","RSRUSDT","GRTUSDT"]
+let sbArr = ["LDOUSDT", "HBARUSDT", "WAVESUSDT", "LINKUSDT", "MAGICUSDT", "NEARUSDT", "AAVEUSDT", "ONEUSDT", "JASMYUSDT", "BELUSDT", "LQTYUSDT", "TOMOUSDT", "ETHUSDT", "STGUSDT", "QNTUSDT", "ENSUSDT", "ICXUSDT", "LUNA2USDT", "STXUSDT", "MINAUSDT", "SOLUSDT", "ROSEUSDT", "TRXUSDT", "XRPUSDT", "BTCDOMUSDT", "KNCUSDT", "APEUSDT", "EOSUSDT", "DOTUSDT", "LINAUSDT", "FILUSDT", "OPUSDT", "ARBUSDT", "GMXUSDT", "UNIUSDT", "HIGHUSDT", "XMRUSDT", "SFPUSDT", "RNDRUSDT", "BNBUSDT", "COMPUSDT", "AVAXUSDT", "SSVUSDT", "INJUSDT", "XLMUSDT", "LTCUSDT", "GRTUSDT", "SNXUSDT", "HOOKUSDT", "DYDXUSDT", "LPTUSDT", "RSRUSDT", "MATICUSDT", "FXSUSDT", "USDCUSDT", "RDNTUSDT", "BTCUSDT", "1000LUNCUSDT", "ALPHAUSDT", "ICPUSDT", "DGBUSDT", "FOOTBALLUSDT", "NKNUSDT"]
+//let pathArr = ["3","4","5","6"]
+let pathArr = ["3m","5m","15m","30m"]
 let itArr = ["3m","5m","15m","30m"]
 
 
@@ -35,17 +37,17 @@ class CoreViewController {
     var ennf = "ML3mSharpV2"
     
     func configModels() {
-        config3m()
-        config5m()
-        config15m()
-        config30m()
-
-        config3mv2()
-        config5mv2()
-        config15mv2()
-        config30mv2()
+//        config3m()
+//        config5m()
+//        config15m()
+//        config30m()
+//
+//        config3mv2()
+//        config5mv2()
+//        config15mv2()
+//        config30mv2()
         
-//        loopTask()
+        loopTask()
     }
     
     func loopTask() {
