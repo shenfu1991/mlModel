@@ -1,0 +1,39 @@
+{
+  "Outputs" : {
+    "result" : {
+      "MLFeatureShortDescription" : "--"
+    },
+    "resultProbability" : {
+      "MLFeatureShortDescription" : "--"
+    }
+  },
+  "Inputs" : {
+    "volume" : {
+      "MLFeatureShortDescription" : "--"
+    },
+    "signal" : {
+      "MLFeatureShortDescription" : "--"
+    },
+    "rate" : {
+      "MLFeatureShortDescription" : "--"
+    },
+    "open" : {
+      "MLFeatureShortDescription" : "--"
+    },
+    "high" : {
+      "MLFeatureShortDescription" : "--"
+    },
+    "sharp" : {
+      "MLFeatureShortDescription" : "--"
+    },
+    "low" : {
+      "MLFeatureShortDescription" : "--"
+    },
+    "volatility" : {
+      "MLFeatureShortDescription" : "--"
+    }
+  },
+  "TrainingInputs" : {
+
+  }
+}
