@@ -2,10 +2,10 @@
   "MLModelVersionStringKey" : "--",
   "MLModelDescriptionKey" : "3m: 仅包含7个币，数据是3天的，3mV5: 包含63个币，数据只有一天",
   "MLModelCreatorDefinedKey" : {
-    "com.apple.createml.app.tag" : "99.4",
     "com.apple.createml.version" : "13.3.1",
-    "com.apple.createml.app.version" : "4.0",
-    "com.apple.coreml.model.preview.type" : "tabularClassifier"
+    "com.apple.createml.app.tag" : "99.4",
+    "com.apple.coreml.model.preview.type" : "tabularClassifier",
+    "com.apple.createml.app.version" : "4.0"
   },
   "MLModelAuthorKey" : "xuanyuan",
   "MLModelLicenseKey" : "--"
