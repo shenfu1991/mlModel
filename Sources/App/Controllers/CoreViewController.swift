@@ -11,11 +11,15 @@ var md3m: MLModel!
 var md5m: MLModel!
 var md15m: MLModel!
 var md30m: MLModel!
+var md1h: MLModel!
+var md4h: MLModel!
 
 var md3mV5: MLModel!
 var md5mV5: MLModel!
 var md15mV5: MLModel!
 var md30mV5: MLModel!
+var md1hV5: MLModel!
+var md4hV5: MLModel!
 
 
 var csvUrl: URL!
@@ -41,11 +45,15 @@ class CoreViewController {
         config5m()
         config15m()
         config30m()
+        config1h()
+        config4h()
 
         config3mV5()
         config5mV5()
         config15mV5()
         config30mV5()
+        config1hV5()
+        config4hV5()
         
 //        loopTask()
     }
@@ -273,6 +281,26 @@ class CoreViewController {
         }
     }
     
+    func config1h() {
+        var file = #file.components(separatedBy: "App").first ?? ""
+        file += "/Resources/1hv3.mlmodel"
+        let modelUrl = URL(fileURLWithPath: file)
+        if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
+            let model = try? MLModel(contentsOf: compiledUrl)
+            md1h = model
+        }
+    }
+    
+    func config4h() {
+        var file = #file.components(separatedBy: "App").first ?? ""
+        file += "/Resources/4hv3.mlmodel"
+        let modelUrl = URL(fileURLWithPath: file)
+        if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
+            let model = try? MLModel(contentsOf: compiledUrl)
+            md4h = model
+        }
+    }
+    
     func config3mV5() {
         var file = #file.components(separatedBy: "App").first ?? ""
         file += "/Resources/3mV5.mlmodel"
@@ -312,7 +340,26 @@ class CoreViewController {
             md30mV5 = model
         }
     }
-
+    
+    func config1hV5() {
+        var file = #file.components(separatedBy: "App").first ?? ""
+        file += "/Resources/1hv3.mlmodel"
+        let modelUrl = URL(fileURLWithPath: file)
+        if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
+            let model = try? MLModel(contentsOf: compiledUrl)
+            md1hV5 = model
+        }
+    }
+    
+    func config4hV5() {
+        var file = #file.components(separatedBy: "App").first ?? ""
+        file += "/Resources/4hv3.mlmodel"
+        let modelUrl = URL(fileURLWithPath: file)
+        if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
+            let model = try? MLModel(contentsOf: compiledUrl)
+            md4hV5 = model
+        }
+    }
     
     
 }

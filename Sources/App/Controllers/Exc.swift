@@ -133,8 +133,12 @@ func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
             return modelRes(md: md5mV5, dict: dict, symbol: symbol, interval: interval)
         }else if interval.contains("15m") {
             return modelRes(md: md15mV5, dict: dict, symbol: symbol, interval: interval)
-        }else{
+        }else if interval.contains("30m") {
             return modelRes(md: md30mV5, dict: dict, symbol: symbol, interval: interval)
+        }else if interval.contains("1h") {
+            return modelRes(md: md1hV5, dict: dict, symbol: symbol, interval: interval)
+        }else {
+            return modelRes(md: md4hV5, dict: dict, symbol: symbol, interval: interval)
         }
     }else if interval == "3m" {
         return modelRes(md: md3m, dict: dict, symbol: symbol, interval: interval)
@@ -142,8 +146,12 @@ func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
         return modelRes(md: md5m, dict: dict, symbol: symbol, interval: interval)
     }else if interval == "15m" {
         return modelRes(md: md15m, dict: dict, symbol: symbol, interval: interval)
-    }else{
+    }else if interval == "30m" {
         return modelRes(md: md30m, dict: dict, symbol: symbol, interval: interval)
+    }else if interval == "1h" {
+        return modelRes(md: md1h, dict: dict, symbol: symbol, interval: interval)
+    }else{
+        return modelRes(md: md4h, dict: dict, symbol: symbol, interval: interval)
     }
    
     
