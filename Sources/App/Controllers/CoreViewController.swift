@@ -115,6 +115,9 @@ class CoreViewController {
                     
 //                    let ftimestamp = firstRow["timestamp"]?.doubleValue()
                     let fcurrent = firstRow["current"]?.doubleValue() ?? 0
+                    if fcurrent == 0 {
+                        continue
+                    }
                     let fopen = firstRow["open"]?.doubleValue() ?? 0
                     let fhigh = firstRow["high"]?.doubleValue() ?? 0
                     let flow = firstRow["low"]?.doubleValue() ?? 0
