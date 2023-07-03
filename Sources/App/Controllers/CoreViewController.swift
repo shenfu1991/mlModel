@@ -29,7 +29,7 @@ var sbIdx = 0
 //let sbArr = ["BTCUSDT","ETHUSDT","TOMOUSDT","ALPHAUSDT","NKNUSDT","RSRUSDT","GRTUSDT"]
 let sbArr = ["BTCUSDT","ETHUSDT","TOMOUSDT","ALPHAUSDT","NKNUSDT","RSRUSDT","GRTUSDT","HIGHUSDT","IMXUSDT","LPTUSDT","LQTYUSDT","MAGICUSDT","RDNTUSDT","WOOUSDT"]
 //let sbArr = ["LDOUSDT", "HBARUSDT", "WAVESUSDT", "LINKUSDT", "MAGICUSDT", "NEARUSDT", "AAVEUSDT", "ONEUSDT", "JASMYUSDT", "BELUSDT", "LQTYUSDT", "TOMOUSDT", "ETHUSDT", "STGUSDT", "QNTUSDT", "ENSUSDT", "ICXUSDT", "LUNA2USDT", "STXUSDT", "MINAUSDT", "SOLUSDT", "ROSEUSDT", "TRXUSDT", "XRPUSDT", "BTCDOMUSDT", "KNCUSDT", "APEUSDT", "EOSUSDT", "DOTUSDT", "LINAUSDT", "FILUSDT", "OPUSDT", "ARBUSDT", "GMXUSDT", "UNIUSDT", "HIGHUSDT", "XMRUSDT", "SFPUSDT", "RNDRUSDT", "BNBUSDT", "COMPUSDT", "AVAXUSDT", "SSVUSDT", "INJUSDT", "XLMUSDT", "LTCUSDT", "GRTUSDT", "SNXUSDT", "HOOKUSDT", "DYDXUSDT", "LPTUSDT", "RSRUSDT", "MATICUSDT", "FXSUSDT", "USDCUSDT", "RDNTUSDT", "BTCUSDT", "1000LUNCUSDT", "ALPHAUSDT", "ICPUSDT", "DGBUSDT", "FOOTBALLUSDT", "NKNUSDT"]
-//let pathArr = ["3","4","5","6"]
+//let pathArr = ["3m","5m","15m","30m"]
 let pathArr = ["3mv2","5mv2","15mv2","30mv2"]
 let itArr = ["3m","5m","15m","30m"]
 
@@ -88,7 +88,7 @@ class CoreViewController {
         do {
             // 从main bundle中加载CSV文件
 //            ["BTCUSDT","ETHUSDT","TOMOUSDT","ALPHAUSDT","NKNUSDT","RSRUSDT","GRTUSDT"]
-            let path = "/Users/xuanyuan/Downloads/\(pathName)/\(sbName)_\(itName).csv"
+            let path = "/Users/xuanyuan/Downloads/all/\(pathName)/\(sbName)_\(itName).csv"
 //            let path = "/Users/xuanyuan/Downloads/tet.csv"
             let csvFileUrl = URL(fileURLWithPath: path)
 
@@ -152,6 +152,7 @@ class CoreViewController {
 //            exit(0)
         } catch let error {
             print("Error reading CSV file: \(error)")
+            nextFile()
         }
     }
     
