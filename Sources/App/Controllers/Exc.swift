@@ -106,6 +106,8 @@ func modelRes(md: MLModel,dict: [String: Any],symbol:String,interval: String) ->
 func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
     var dict: [String: Any] = [:]
     
+    let current = handleData(data: dic["current"])
+    let avg = handleData(data: dic["avg"])
     let open = handleData(data: dic["open"])
     let high = handleData(data: dic["high"])
     let low = handleData(data: dic["low"])
@@ -116,6 +118,8 @@ func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
     let signal = handleData(data: dic["signal"])
     
     dict = [
+        "current": current,
+        "avg": avg,
         "open": open.fmt(),
         "high": high.fmt(),
         "low": low.fmt(),
@@ -127,6 +131,10 @@ func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
     ]
     
     if interval.contains("101") {
+        
+        dict.removeValue(forKey: "current")
+        dict.removeValue(forKey: "avg")
+
         if interval.contains("3m") {
             return modelRes(md: md3mv4, dict: dict, symbol: symbol, interval: interval)
         }else if interval.contains("5m") {
