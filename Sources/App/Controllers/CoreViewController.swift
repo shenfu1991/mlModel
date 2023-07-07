@@ -14,12 +14,12 @@ var md30m: MLModel!
 var md1h: MLModel!
 var md4h: MLModel!
 
-var md3mv4: MLModel!
-var md5mv4: MLModel!
-var md15mv4: MLModel!
-var md30mv4: MLModel!
-var md1hv4: MLModel!
-var md4hv4: MLModel!
+var md3ma1: MLModel!
+var md5ma1: MLModel!
+var md15ma1: MLModel!
+var md30ma1: MLModel!
+var md1ha1: MLModel!
+var md4ha1: MLModel!
 
 
 var csvUrl: URL!
@@ -32,7 +32,7 @@ var sbIdx = 0
 
 
 class CoreViewController {
-    var ennf = "ML3mSharpv4"
+    var ennf = "ML3mSharpa1"
     
     func configModels() {
         config3m()
@@ -42,17 +42,17 @@ class CoreViewController {
         config1h()
         config4h()
 
-        config3mv4()
-        config5mv4()
-        config15mv4()
-        config30mv4()
-        config1hv4()
-        config4hv4()
+        config3ma1()
+        config5ma1()
+        config15ma1()
+        config30ma1()
+        config1ha1()
+        config4ha1()
     }
  
     func config3m() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/3mv6.mlmodel"
+        file += "/Resources/3mv7.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
@@ -62,7 +62,7 @@ class CoreViewController {
     
     func config5m() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/5mv6.mlmodel"
+        file += "/Resources/5mv7.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
@@ -72,7 +72,7 @@ class CoreViewController {
     
     func config15m() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/15mv6.mlmodel"
+        file += "/Resources/15mv7.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
@@ -82,7 +82,7 @@ class CoreViewController {
     
     func config30m() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/30mv6.mlmodel"
+        file += "/Resources/30mv7.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
@@ -92,7 +92,7 @@ class CoreViewController {
     
     func config1h() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/1hv6.mlmodel"
+        file += "/Resources/1hv7.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
@@ -102,7 +102,7 @@ class CoreViewController {
     
     func config4h() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/4hv6.mlmodel"
+        file += "/Resources/4hv7.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
@@ -110,63 +110,63 @@ class CoreViewController {
         }
     }
     
-    func config3mv4() {
+    func config3ma1() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/3mv4.mlmodel"
+        file += "/Resources/3ma1.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
-            md3mv4 = model
+            md3ma1 = model
         }
     }
     
-    func config5mv4() {
+    func config5ma1() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/5mv4.mlmodel"
+        file += "/Resources/5ma1.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
-            md5mv4 = model
+            md5ma1 = model
         }
     }
     
-    func config15mv4() {
+    func config15ma1() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/15mv4.mlmodel"
+        file += "/Resources/15ma1.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
-            md15mv4 = model
+            md15ma1 = model
         }
     }
     
-    func config30mv4() {
+    func config30ma1() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/30mv4.mlmodel"
+        file += "/Resources/30ma1.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
-            md30mv4 = model
+            md30ma1 = model
         }
     }
     
-    func config1hv4() {
+    func config1ha1() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/1hv4.mlmodel"
+        file += "/Resources/1ha1.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
-            md1hv4 = model
+            md1ha1 = model
         }
     }
     
-    func config4hv4() {
+    func config4ha1() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/4hv4.mlmodel"
+        file += "/Resources/4ha1.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
-            md4hv4 = model
+            md4ha1 = model
         }
     }
     

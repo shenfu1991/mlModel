@@ -131,22 +131,18 @@ func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
     ]
     
     if interval.contains("101") {
-        
-        dict.removeValue(forKey: "current")
-        dict.removeValue(forKey: "avg")
-
         if interval.contains("3m") {
-            return modelRes(md: md3mv4, dict: dict, symbol: symbol, interval: interval)
+            return modelRes(md: md3ma1, dict: dict, symbol: symbol, interval: interval)
         }else if interval.contains("5m") {
-            return modelRes(md: md5mv4, dict: dict, symbol: symbol, interval: interval)
+            return modelRes(md: md5ma1, dict: dict, symbol: symbol, interval: interval)
         }else if interval.contains("15m") {
-            return modelRes(md: md15mv4, dict: dict, symbol: symbol, interval: interval)
+            return modelRes(md: md15ma1, dict: dict, symbol: symbol, interval: interval)
         }else if interval.contains("30m") {
-            return modelRes(md: md30mv4, dict: dict, symbol: symbol, interval: interval)
+            return modelRes(md: md30ma1, dict: dict, symbol: symbol, interval: interval)
         }else if interval.contains("1h") {
-            return modelRes(md: md1hv4, dict: dict, symbol: symbol, interval: interval)
+            return modelRes(md: md1ha1, dict: dict, symbol: symbol, interval: interval)
         }else {
-            return modelRes(md: md4hv4, dict: dict, symbol: symbol, interval: interval)
+            return modelRes(md: md4ha1, dict: dict, symbol: symbol, interval: interval)
         }
     }else if interval == "3m" {
         return modelRes(md: md3m, dict: dict, symbol: symbol, interval: interval)
