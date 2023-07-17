@@ -106,25 +106,32 @@ func modelRes(md: MLModel,dict: [String: Any],symbol:String,interval: String) ->
 func predictForv4(dic: [String: Any],interval: String,symbol: String) ->String {
     var dict: [String: Any] = [:]
     
-    let current = handleData(data: dic["current"])
-    let avg = handleData(data: dic["avg"])
-    let open = handleData(data: dic["open"])
-    let high = handleData(data: dic["high"])
-    let low = handleData(data: dic["low"])
-    let volume = handleData(data: dic["volume"])
+//    let current = handleData(data: dic["current"])
+//    let avg = handleData(data: dic["avg"])
+//    let open = handleData(data: dic["open"])
+//    let high = handleData(data: dic["high"])
+//    let low = handleData(data: dic["low"])
+//    let volume = handleData(data: dic["volume"])
+    let iRank = handleData(data: dic["iRank"])
+    let minRate = handleData(data: dic["minRate"])
+    let maxRate = handleData(data: dic["maxRate"])
+
     let volatility = handleData(data: dic["volatility"])
-    let rate = handleData(data: dic["rate"])
+//    let rate = handleData(data: dic["rate"])
     let sharp = handleData(data: dic["sharp"])
     let signal = handleData(data: dic["signal"])
     
     dict = [
-        "current": current,
-        "avg": avg,
-        "open": open.fmt(),
-        "high": high.fmt(),
-        "low": low.fmt(),
-        "rate": rate.fmt(),
-        "volume": volume.fmt(x: 2),
+//        "current": current,
+//        "avg": avg,
+//        "open": open.fmt(),
+//        "high": high.fmt(),
+//        "low": low.fmt(),
+//        "rate": rate.fmt(),
+//        "volume": volume.fmt(x: 2),
+        "iRank": iRank.fmt(x: 2),
+        "minRate": minRate.fmt(),
+        "maxRate": maxRate.fmt(),
         "volatility": volatility.fmt(),
         "sharp": sharp.fmt(),
         "signal": signal.fmt()
