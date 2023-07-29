@@ -112,7 +112,7 @@ class CoreViewController {
     
     func config3ma1() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/3e.mlmodel"
+        file += "/Resources/3m.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
@@ -122,7 +122,7 @@ class CoreViewController {
     
     func config5ma1() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/5e.mlmodel"
+        file += "/Resources/5m.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
@@ -132,7 +132,7 @@ class CoreViewController {
     
     func config15ma1() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/15e.mlmodel"
+        file += "/Resources/15m.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
@@ -142,7 +142,7 @@ class CoreViewController {
     
     func config30ma1() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/30e.mlmodel"
+        file += "/Resources/30m.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
@@ -152,7 +152,7 @@ class CoreViewController {
     
     func config1ha1() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/1e.mlmodel"
+        file += "/Resources/1h.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
@@ -162,7 +162,7 @@ class CoreViewController {
     
     func config4ha1() {
         var file = #file.components(separatedBy: "App").first ?? ""
-        file += "/Resources/4e.mlmodel"
+        file += "/Resources/4h.mlmodel"
         let modelUrl = URL(fileURLWithPath: file)
         if let compiledUrl = try? MLModel.compileModel(at: modelUrl) {
             let model = try? MLModel(contentsOf: compiledUrl)
